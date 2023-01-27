@@ -1,0 +1,10 @@
+<div class="login-page">
+  <div class="form">
+    <form [formGroup]="form" class="login-form">
+      <input type="text" formControlName="user" placeholder="username"/>
+      <input type="password" formControlName="password" placeholder="password"/>
+      <button (click)="login()">login</button>
+      <p *ngIf="!this.flag" style="color: red;">Error de inicio de sesión! Verifique su usuario y/o contraseña.</p>
+    </form>
+  </div>
+</div>

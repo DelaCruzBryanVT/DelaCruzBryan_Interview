@@ -1,0 +1,90 @@
+<div class="login-page" *ngIf="!flagForm">
+    <div class="form">
+        <form class="login-form">
+            <p style="text-align: center; font-size: 20pt; font-weight: bold;">GESTIÓN EMPRESAS</p>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Nombre: </label>
+                <input type="text" placeholder="Nombre empresa" name="entName" [(ngModel)]="ent.entName" required>
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Dirección: </label>
+                <input type="text" placeholder="Dirección empresa" name="entAdress" [(ngModel)]="ent.entAddress"  required/>
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Teléfono: </label>
+                <input type="text" placeholder="Teléfono empresa" name="entPhone" [(ngModel)]="ent.entPhone"  required/>
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Estado: </label>
+                <input type="radio" class="radio" value="True" name="True" [(ngModel)]="ent.entStatus"> <span
+                    style="padding: 5px;">Activo</span>&nbsp;
+                <input type="radio" class="radio" value="False" name="False" [(ngModel)]="ent.entStatus"> <span
+                    style="padding: 5px;">Inactivo</span>
+            </div>
+            <button class="btn btn-success" (click)="save()">Guardar</button>
+            <button class="btn btn-info" id="menu1" (click)="mainMenu()">Menú Pincipal</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODIFY FORM -->
+<div class="login-page" *ngIf="flagForm">
+    <div class="form">
+        <form class="login-form">
+            <p style="text-align: center; font-size: 20pt; font-weight: bold;">GESTIÓN EMPRESAS</p>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Nombre: </label>
+                <input type="text" placeholder="Nombre empresa" name="entName" [(ngModel)]="entAct.entName">
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Dirección: </label>
+                <input type="text" placeholder="Dirección empresa" name="entAdress" [(ngModel)]="entAct.entAddress" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Teléfono: </label>
+                <input type="text" placeholder="Teléfono empresa" name="entPhone" [(ngModel)]="entAct.entPhone" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Estado: </label>
+                <input type="radio" class="radio" value="True" name="True" [(ngModel)]="entAct.entStatus"> <span
+                    style="padding: 5px;">Activo</span>&nbsp;
+                <input type="radio" class="radio" value="False" name="False" [(ngModel)]="entAct.entStatus"> <span
+                    style="padding: 5px;">Inactivo</span>
+            </div>
+            <button class="btn btn-success" (click)="saveModify()">Guardar</button>
+            <button class="btn btn-info" id="menu2" (click)="mainMenu()">Menú Pincipal</button>
+        </form>
+        
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha Creación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ent of this.enterpriseList">
+                <td>{{ent.entId}}</td>
+                <td>{{ent.entName}}</td>
+                <td>{{ent.entAddress}}</td>
+                <td>{{ent.entPhone}}</td>
+                <td>{{ent.entStatus}}</td>
+                <td>{{ent.entCreatedDate | date:'dd/MM/yyyy'}}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="modify(ent.entId)">Modificar</button> &nbsp;
+                    <button class="btn btn-danger" (click)="delete(ent.entId)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

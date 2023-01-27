@@ -1,0 +1,135 @@
+<div class="login-page" *ngIf="!flagForm">
+    <div class="form">
+        <form class="login-form">
+            <p style="text-align: center; font-size: 20pt; font-weight: bold;">GESTIÓN EMPLEADOS</p>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Nombres: </label>
+                <input type="text" placeholder="Nombre empleado" name="entName" [(ngModel)]="ent.empName" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Apellidos: </label>
+                <input type="text" placeholder="Nombre empleado" name="entApellido" [(ngModel)]="ent.empSurname" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Edad: (años)</label>
+                <input type="number" name="entAge" [(ngModel)]="ent.empAge" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Email: </label>
+                <input type="text" placeholder="Email empleado" name="entEmail" [(ngModel)]="ent.empEmail" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label for="sel1" id="labelSelect" class="form-label">Posición:</label>
+                <select class="form-select" id="sel1" name="ent.empPosition" [(ngModel)]="ent.empPosition">
+                    <option value="Gerente">Gerente </option>
+                    <option value="Secretario/a">Secretario/a </option>
+                    <option value="Bodeguero/a">Bodeguero/a </option>
+                    <option value="Guardia">Guardia </option>
+                </select>
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label for="sel1" id="labelSelect" class="form-label">Selecciona el Departamento:</label>
+                <select class="form-select" id="sel1" name="depEmp.depEmpId" [(ngModel)]="depEmp.depEmpId">
+                    <option *ngFor="let obj of this.departmentList" value="{{obj.depId}}">
+                        {{obj.depId}} - {{obj.depName}}</option>
+                </select>
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Estado: </label>
+                <input type="radio" class="radio" value="True" name="True" [(ngModel)]="ent.empStatus"> <span
+                    style="padding: 5px;">Activo</span>&nbsp;
+                <input type="radio" class="radio" value="False" name="False" [(ngModel)]="ent.empStatus"> <span
+                    style="padding: 5px;">Inactivo</span>
+            </div>
+            <button class="btn btn-success" (click)="save()">Guardar</button>
+            <button class="btn btn-info" id="menu2" (click)="mainMenu()">Menú Pincipal</button>
+      
+        </form>
+    </div>
+</div>
+
+<div class="login-page" *ngIf="flagForm">
+    <div class="form">
+        <form class="login-form">
+            <p style="text-align: center; font-size: 20pt; font-weight: bold;">GESTIÓN EMPLEADOS</p>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Nombres: </label>
+                <input type="text" placeholder="Nombre empleado" name="entName" [(ngModel)]="entAct.empName" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Apellidos: </label>
+                <input type="text" placeholder="Nombre empleado" name="entApellido" [(ngModel)]="entAct.empSurname" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Edad: (años)</label>
+                <input type="number" name="entAge" [(ngModel)]="entAct.empAge" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Email: </label>
+                <input type="text" placeholder="Email empleado" name="entEmail" [(ngModel)]="entAct.empEmail" />
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label for="sel1" id="labelSelect" class="form-label">Posición:</label>
+                <select class="form-select" id="sel1" name="ent.empPosition" [(ngModel)]="entAct.empPosition">
+                    <option value="Gerente">Gerente </option>
+                    <option value="Secretario/a">Secretario/a </option>
+                    <option value="Bodeguero/a">Bodeguero/a </option>
+                    <option value="Guardia">Guardia </option>
+                </select>
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label for="sel1" id="labelSelect" class="form-label">Selecciona el Departamento:</label>
+                <select class="form-select" id="sel1" name="depEmp.depEmpId" [(ngModel)]="depEmp.depEmpId">
+                    <option *ngFor="let obj of this.departmentList" value="{{obj.depId}}">
+                        {{obj.depId}} - {{obj.depName}}</option>
+                </select>
+            </div>
+            <div style="display: inline-flex; width: 100%;">
+                <label>Estado: </label>
+                <input type="radio" class="radio" value="True" name="True" [(ngModel)]="entAct.empStatus"> <span
+                    style="padding: 5px;">Activo</span>&nbsp;
+                <input type="radio" class="radio" value="False" name="False" [(ngModel)]="entAct.empStatus"> <span
+                    style="padding: 5px;">Inactivo</span>
+            </div>
+            <button class="btn btn-success" (click)="saveModify()">Guardar</button>
+            <button class="btn btn-info" id="menu2" (click)="mainMenu()">Menú Pincipal</button>
+      
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Email</th>
+                <th scope="col">Posición</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha Creación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ent of this.employeeList">
+                <td>{{ent.empId}}</td>
+                <td>{{ent.empName}}</td>
+                <td>{{ent.empSurname}}</td>
+                <td>{{ent.empAge}}</td>
+                <td>{{ent.empEmail}}</td>
+                <td>{{ent.empPosition}}</td>
+                <td>{{ent.empStatus}}</td>
+
+                <td>{{ent.empCreatedDate | date:'dd/MM/yyyy'}}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="modify(ent.empId)">Modificar</button> &nbsp;
+                    <button class="btn btn-danger" (click)="delete(ent.empId)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
