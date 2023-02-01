@@ -13,7 +13,7 @@
             </div>
             <div style="display: inline-flex; width: 100%;">
                 <label>Teléfono: </label>
-                <input type="text" placeholder="Teléfono departamento" name="entPhone" [(ngModel)]="ent.depPhone" />
+                <input type="text" placeholder="Teléfono departamento" name="entPhone" [(ngModel)]="ent.depPhone" (keypress)="onlyNumbers($event)"/>
             </div>
             <div style="display: inline-flex; width: 100%;">
                 <label>Estado: </label>
